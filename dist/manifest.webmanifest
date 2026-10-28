@@ -1,0 +1,19 @@
+{
+  "id": "/",
+  "name": "Sumit's Options Desk",
+  "short_name": "Options Desk",
+  "description": "NSE stock and option paper trading workspace",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#0c1015",
+  "theme_color": "#0c1015",
+  "icons": [
+    {
+      "src": "app-icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

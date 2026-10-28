@@ -1,0 +1,10 @@
+nse-master.json.gz
+*.tar.gz
+*.log
+
+.env
+.env.*
+!.env.example
+node_modules/
+*.pem
+*.key

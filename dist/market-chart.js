@@ -1,0 +1,11 @@
+/* Official TradingView embed; no quote extraction or linkage to simulated accounting. */
+(()=>{'use strict';
+const get=id=>document.getElementById(id);let current='',generation=0;
+function mount(force=false){const stock=get('stock-symbol').textContent.trim(),interval=get('market-interval').value,prefs=window.DeskAppearance?.get()||{},theme=prefs.theme==='paper'?'light':'dark',style=prefs.chartStyle||'1',key=stock+'|'+interval+'|'+theme+'|'+style;if(!stock||(!force&&key===current))return;current=key;const version=++generation,symbol='NSE:'+stock;
+get('market-title').textContent=stock+' · market candlesticks';const link=get('market-link');link.href='https://www.tradingview.com/chart/?symbol='+encodeURIComponent(symbol);link.textContent=stock+' chart by TradingView ↗';get('market-status').textContent='Loading TradingView. Data availability and delays depend on the symbol.';
+const host=get('market-chart');host.replaceChildren();const wrapper=document.createElement('div');wrapper.className='tradingview-widget-container';wrapper.style.height='100%';wrapper.style.width='100%';const widget=document.createElement('div');widget.className='tradingview-widget-container__widget';widget.style.height='100%';widget.style.width='100%';wrapper.appendChild(widget);
+const script=document.createElement('script');script.type='text/javascript';script.src='https://s3.tradingview.com/external-embedding/embed-widget-advanced-chart.js';script.async=true;script.textContent=JSON.stringify({autosize:true,symbol,interval,timezone:'Asia/Kolkata',theme,style,locale:'en',allow_symbol_change:false,calendar:false,hide_side_toolbar:false,support_host:'https://www.tradingview.com'});script.onerror=()=>{if(version===generation)get('market-status').textContent='TradingView could not load. Try reloading or open the chart using the link above.';};script.onload=()=>{if(version===generation)get('market-status').textContent='TradingView widget loaded. Check its delay/status indicator; a loaded widget does not guarantee a quote for this symbol.';};wrapper.appendChild(script);host.appendChild(wrapper);
+}
+document.addEventListener('desk:appearance',()=>mount());get('market-interval').onchange=()=>mount();get('market-reload').onclick=()=>mount(true);new MutationObserver(()=>mount()).observe(get('stock-symbol'),{childList:true,characterData:true,subtree:true});mount();
+})();
+

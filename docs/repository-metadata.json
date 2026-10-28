@@ -1,0 +1,5 @@
+{
+  "name": "nse-options-desk",
+  "description": "An installable NSE stock and options paper-trading workspace by Sumit Sarkar, with synchronized candles, customizable charts, option-chain exploration, lot-based positions, P&L tracking, and a guide to integrating your own live market-data API.",
+  "topics": ["nse", "options", "paper-trading", "stock-market", "candlestick-chart", "pwa", "javascript"]
+}
